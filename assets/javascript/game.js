@@ -1,7 +1,3 @@
-
-var key = "c3jwjWyqTWqKljMuLXLRmxYXuZfrT7iD";
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + newSUB + "&api_key=dc6zaTOxFJmzC&limit=10";
-
 var newBTN = function () {
     event.preventDefault();
     var newSUB = $("#input").val();
@@ -10,12 +6,13 @@ var newBTN = function () {
     newBTN.addClass("button");
     newBTN.text(newSUB);
     $("#buttonList").append(newBTN);
-}
+};
 
-var searchGIF = function () {
-    var id = $(this).attr("id");
+var searchGIF = function (term) {
+    console.log("clicked");
     var key = "c3jwjWyqTWqKljMuLXLRmxYXuZfrT7iD";
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + id + "&api_key=" + key;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + term + "&api_key=" + key;
+    console.log(queryURL);
     $.ajax({
         method: "GET",
         url: queryURL,
@@ -25,35 +22,44 @@ var searchGIF = function () {
             var gifBody = $("<img>");
             gifBody.attr("src", results[i].images.fixed_height_still.url);
             gifBody.attr("data-state", "still");
-            gifBody.attr("data-still", results[i].images.fixed_height_still.url);          
+            gifBody.attr("data-still", results[i].images.fixed_height_still.url);
             gifBody.attr("data-animate", results[i].images.fixed_height.url);
             gifBody.addClass("imgClick");
             $("#imagesList").append(gifBody);
         }
     });
-}
-
-
-
-
-$(".imgClick").click(function () {
-
-
-
-})
-
-
-
-    .attr("data-state", still);
-
-.attr("data-still", still);
-
-.attr("data-animate", still);
-
- 
-
- 
-
- 
-
-})
+};
+// $(".imgClick").click(function () {
+//     console.log("clicked img");
+//     var state = $(this).attr("data-state");
+//     if (state === "still") {
+//         $(this).attr("src", $(this).attr("data-animate"));
+//         $(this).attr("data-state", "animate");
+//     } else {
+//         $(this).attr("src", $(this).attr("data-still"));
+//         $(this).attr("data-state", "still");
+//     }
+// });
+$(document).on('click', '.imgClick', function () {
+    console.log("clicked img");
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
+$("#submit").on("click", function () {
+    newBTN();
+});
+$(document).on('click', '.button', function () {
+    console.log("clicked");
+    var id = $(this).attr("id");
+    searchGIF(id);
+});
+// $(".button").on("click",function () {
+//     console.log("clicked");
+//     searchGIF();
+// });
