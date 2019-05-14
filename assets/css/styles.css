@@ -3,7 +3,20 @@
   margin: 10px;
   width: auto;
   height: 30px;
-  background-color: bisque;
+  padding: 0 15px 0 15px;
+  line-height: 30px;
+  background-color: paleturquoise;
+  color: #292946;
+}
+.buttonClicked{
+  float: left;
+  margin: 10px;
+  width: auto;
+  height: 30px;
+  padding: 0 15px 0 15px;
+  line-height: 30px;
+  background-color: #292946;
+  color: paleturquoise;
 }
 #input{
   margin: 10px;

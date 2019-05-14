@@ -1,18 +1,18 @@
 var newBTN = function () {
     event.preventDefault();
     var newSUB = $("#input").val();
-    var newBTN = $("<div>");
+    var newBTN = $("<button>");
     newBTN.attr("id", newSUB);
+    newBTN.attr("data-state", "default");
     newBTN.addClass("button");
     newBTN.text(newSUB);
     $("#buttonList").append(newBTN);
+    $("#input").val("");
 };
 
 var searchGIF = function (term) {
-    console.log("clicked");
     var key = "c3jwjWyqTWqKljMuLXLRmxYXuZfrT7iD";
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + term + "&api_key=" + key;
-    console.log(queryURL);
     $.ajax({
         method: "GET",
         url: queryURL,
@@ -36,6 +36,7 @@ var searchGIF = function (term) {
         }
     });
 };
+
 // $(".imgClick").click(function () {
 //     console.log("clicked img");
 //     var state = $(this).attr("data-state");
@@ -48,7 +49,6 @@ var searchGIF = function (term) {
 //     }
 // });
 $(document).on('click', '.imgClick', function () {
-    console.log("clicked img");
     var state = $(this).attr("data-state");
     if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
@@ -59,12 +59,17 @@ $(document).on('click', '.imgClick', function () {
     }
 });
 $("#submit").on("click", function () {
-    if($("#input").val()!=""){
-        console.log($("#input").val());
-    newBTN();};
+    if ($("#input").val() != "") {
+        newBTN();
+    };
 });
-$(document).on('click', '.button', function () {
+$(document).on('click', ".button, .buttonClicked", function () {
     $("#imagesList").empty();
+    console.log("default");
+    $(".buttonClicked").removeClass("buttonClicked").addClass("button");
+    $(this).addClass("buttonClicked");
+    $(this).removeClass("button");
+    $(this).attr("data-state", "clicked");
     var id = $(this).attr("id");
     searchGIF(id);
 });
