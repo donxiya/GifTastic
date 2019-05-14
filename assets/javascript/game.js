@@ -55,6 +55,7 @@ $("#submit").on("click", function () {
     newBTN();
 });
 $(document).on('click', '.button', function () {
+    $("#imagesList").empty();
     console.log("clicked");
     var id = $(this).attr("id");
     searchGIF(id);
