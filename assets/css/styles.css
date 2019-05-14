@@ -23,14 +23,15 @@
   float: left;
   width: 100px;
   height: 30px;
-  background-color: cadetblue;
+  background-color: paleturquoise;
 }
 #submit{
   float: left;
   width: 60px;
   height: 30px;
   margin: 10px;
-  background-color: palegreen;
+  background-color: #537953;
+  color: aliceblue;
 }
 .imgContainer{
   margin: 10px;
