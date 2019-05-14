@@ -16,3 +16,21 @@
   height: 100px;
   background-color: palegreen;
 }
+.imgContainer{
+  margin: 10px;
+  float: left;
+  width: 150px;
+  height: 150px;
+  background-color: palegoldenrod;
+}
+.imgClick{
+  margin: 10px;
+  margin-top: 0; 
+  width: 130px;
+  height: 130px;
+}
+.text{
+  text-align: center;
+  height: 25px;
+  background-color: brown;
+}

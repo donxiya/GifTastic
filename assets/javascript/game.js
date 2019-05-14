@@ -20,12 +20,19 @@ var searchGIF = function (term) {
         var results = response.data;
         for (var i = 0; i < results.length; i++) {
             var gifBody = $("<img>");
+            var gifDiv = $("<div>");
+            var p = $("<div>");
             gifBody.attr("src", results[i].images.fixed_height_still.url);
             gifBody.attr("data-state", "still");
             gifBody.attr("data-still", results[i].images.fixed_height_still.url);
             gifBody.attr("data-animate", results[i].images.fixed_height.url);
             gifBody.addClass("imgClick");
-            $("#imagesList").append(gifBody);
+            gifDiv.addClass("imgContainer");
+            p.addClass("text");
+            p.text(term);
+            gifDiv.append(p);
+            gifDiv.append(gifBody);
+            $("#imagesList").append(gifDiv);
         }
     });
 };
@@ -52,11 +59,12 @@ $(document).on('click', '.imgClick', function () {
     }
 });
 $("#submit").on("click", function () {
-    newBTN();
+    if($("#input").val()!=""){
+        console.log($("#input").val());
+    newBTN();};
 });
 $(document).on('click', '.button', function () {
     $("#imagesList").empty();
-    console.log("clicked");
     var id = $(this).attr("id");
     searchGIF(id);
 });
