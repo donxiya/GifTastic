@@ -1,3 +1,6 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
 .button{
   float: left;
   margin: 10px;
@@ -37,19 +40,23 @@
   margin: 10px;
   float: left;
   width: 150px;
-  height: 150px;
+  height: 180px;
   background-color: palegoldenrod;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #537953;
 }
 .imgClick{
-  margin: 10px;
   margin-top: 0; 
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
 }
 .text{
   text-align: center;
-  height: 25px;
-  background-color: brown;
+  height: 30px;
+  line-height: 30px;
+  background-color: #acf1ac;
+  color: #537953;
 }
 .searchBar{
   width: 100%;
