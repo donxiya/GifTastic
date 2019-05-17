@@ -84,16 +84,34 @@ $(document).ready(function () {
                     // });
                 }
             };
+           var forceDownload= function(blob, filename) {
+                var a = document.createElement('a');
+                a.download = filename;
+                a.href = blob;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+              }
             $(".download").click(function () {
                 var id = $(this).attr("data-id")
                 var myImage = document.getElementById(id);
                 //var myImage = myDiv.children[0];
                 console.log(id);
-                console.log(myImage);
-                // this.href = myImage.src;
-                window.location.href = myImage.src;
-                //$.fileDownload(myImage.src);
-
+                console.log(myImage.src);
+                var filename = id;
+                var url = $(myImage).attr("data-animate");
+                fetch(url, {
+                    headers: new Headers({
+                      'Origin': location.origin
+                    }),
+                    mode: 'cors'
+                  })
+                  .then(response => response.blob())
+                  .then(blob => {
+                    let blobUrl = window.URL.createObjectURL(blob);
+                    forceDownload(blobUrl, filename);
+                  })
+                
             });
             // $(".text").click(function () {
             //     var href = $('.downloadLink').attr('data-href');

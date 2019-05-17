@@ -7,6 +7,14 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+          <FilesMatch "\.(bmp|cur|gif|ico|jpe?g|png|svgz?|webp)$">
+            SetEnvIf Origin ":" IS_CORS
+            Header set Access-Control-Allow-Origin "*" env=IS_CORS
+          </FilesMatch>
+        </IfModule>
+      </IfModule>
 </head>
 
 <body>
