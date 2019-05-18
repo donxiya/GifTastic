@@ -7,14 +7,6 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
-    <IfModule mod_setenvif.c>
-        <IfModule mod_headers.c>
-          <FilesMatch "\.(bmp|cur|gif|ico|jpe?g|png|svgz?|webp)$">
-            SetEnvIf Origin ":" IS_CORS
-            Header set Access-Control-Allow-Origin "*" env=IS_CORS
-          </FilesMatch>
-        </IfModule>
-      </IfModule>
 </head>
 
 <body>
@@ -25,10 +17,6 @@
         <button id="multi">Multichoice</button>
         <button id="clear">Clear</button>
         <button id="addFav">Add Favorite</button>
-
-
-
-
     </div>
     <p>Favorite</p>
     <div class="buttonBar2">
@@ -38,7 +26,6 @@
     <div class="buttonBar">
         <div id="buttonList"></div>
     </div>
-
     <div class="imageBar">
 
         <div id="imagesList"></div>

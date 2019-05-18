@@ -36,11 +36,8 @@ $(document).ready(function () {
         renderPage();
     }
     var searchGIF = function (term) {
-
-
         var key = "c3jwjWyqTWqKljMuLXLRmxYXuZfrT7iD";
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + term + "&api_key=" + key;
-
         $.ajax({
             method: "GET",
             url: queryURL,
@@ -65,7 +62,7 @@ $(document).ready(function () {
                     d.text("Download");
                     d.attr("data-id", term + i);
                     d.attr("taget", "_blank");
-                    d.attr("download","download");
+                    d.attr("download", "download");
                     //d.attr("download", "newFile.gif");
                     gifDiv.append(t);
                     gifDiv.append(gifBody);
@@ -84,34 +81,32 @@ $(document).ready(function () {
                     // });
                 }
             };
-           var forceDownload= function(blob, filename) {
+            var forceDownload = function (blob, filename) {
                 var a = document.createElement('a');
                 a.download = filename;
                 a.href = blob;
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-              }
+            }
             $(".download").click(function () {
                 var id = $(this).attr("data-id")
                 var myImage = document.getElementById(id);
-                //var myImage = myDiv.children[0];
-                console.log(id);
-                console.log(myImage.src);
                 var filename = id;
                 var url = $(myImage).attr("data-animate");
                 fetch(url, {
                     headers: new Headers({
-                      'Origin': location.origin
+                        'Origin': location.origin
                     }),
                     mode: 'cors'
-                  })
-                  .then(response => response.blob())
-                  .then(blob => {
-                    let blobUrl = window.URL.createObjectURL(blob);
-                    forceDownload(blobUrl, filename);
-                  })
-                
+                })
+                    .then(
+                        function (response) { return response.blob() })
+                    .then(
+                        function (blob) {
+                            var blobUrl = window.URL.createObjectURL(blob);
+                            forceDownload(blobUrl, filename);
+                        })
             });
             // $(".text").click(function () {
             //     var href = $('.downloadLink').attr('data-href');
@@ -155,10 +150,13 @@ $(document).ready(function () {
         };
     });
     $("#clear").on("click", function () {
-        localStorage.clear();
+        console.log("clear");
         $("#imagesList").empty();
         $("#buttonList").empty();
         $("#buttonListFav").empty();
+        resultList = [];
+        favList = [];
+        localStorage.clear();
     });
     $("#submit").on("click", function () {
         if ($("#input").val() != "") {
