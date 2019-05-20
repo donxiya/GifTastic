@@ -5,16 +5,19 @@ $(document).ready(function () {
     var newBTN = function () {
         event.preventDefault();
         var newSUB = $("#input").val().trim();
-        var newBTN = $("<button>");
-        newBTN.attr("id", newSUB);
-        newBTN.attr("data-state", "default");
-        newBTN.addClass("button");
-        newBTN.text(newSUB);
-        resultList.push(newSUB);
-        console.log(resultList);
-        localStorage.clear();
-        localStorage.setItem("searchlist", JSON.stringify(resultList));
-        renderPage();
+        
+            console.log("new");
+            var newBTN = $("<button>");
+            newBTN.attr("id", newSUB);
+            newBTN.attr("data-state", "default");
+            newBTN.addClass("button");
+            newBTN.text(newSUB);
+            resultList.push(newSUB);
+            localStorage.clear();
+            localStorage.setItem("searchlist", JSON.stringify(resultList));
+            renderPage();
+        
+
         $("#input").val("");
     };
     var renderPage = function () {
@@ -63,22 +66,11 @@ $(document).ready(function () {
                     d.attr("data-id", term + i);
                     d.attr("taget", "_blank");
                     d.attr("download", "download");
-                    //d.attr("download", "newFile.gif");
                     gifDiv.append(t);
                     gifDiv.append(gifBody);
                     gifDiv.append(d);
                     $("#imagesList").append(gifDiv);
-                    // $(".imgClick").click(function () {
-                    //     var state = $(this).attr("data-state");
-                    //     if (state === "still") {
-                    //         console.log("animate");
-                    //         $(this).attr("src", $(this).attr("data-animate"));
-                    //         $(this).attr("data-state", "animate");
-                    //     } else {
-                    //         $(this).attr("src", $(this).attr("data-still"));
-                    //         $(this).attr("data-state", "still");
-                    //     }
-                    // });
+
                 }
             };
             var forceDownload = function (blob, filename) {
@@ -108,10 +100,6 @@ $(document).ready(function () {
                             forceDownload(blobUrl, filename);
                         })
             });
-            // $(".text").click(function () {
-            //     var href = $('.downloadLink').attr('data-href');
-            //     window.location.href = href;
-            // });
             $(".imgClick").click(function () {
                 var state = $(this).attr("data-state");
                 if (state === "still") {
@@ -125,32 +113,24 @@ $(document).ready(function () {
         });
     };
 
-
-    // $(document).on('click', '.imgClick', function () {
-    //     var state = $(this).attr("data-state");
-    //     if (state === "still") {
-    //         $(this).attr("src", $(this).attr("data-animate"));
-    //         $(this).attr("data-state", "animate");
-    //     } else {
-    //         $(this).attr("src", $(this).attr("data-still"));
-    //         $(this).attr("data-state", "still");
-    //     }
-    // });
     var multi = false;
     $("#multi").on("click", function () {
         if (multi === true) {
             multi = false;
+            $(this).addClass("buttonToggle");
+            $(this).removeClass("buttonToggleClicked");
+            $(this).text("Multiple Tags Off");
+
         } else {
             multi = true;
+            $(this).addClass("buttonToggleClicked");
+            $(this).removeClass("buttonToggle");
+            $(this).text("Multiple Tags On");
+
         }
     });
-    $("#submit").on("click", function () {
-        if ($("#input").val() != "") {
-            newBTN();
-        };
-    });
+
     $("#clear").on("click", function () {
-        console.log("clear");
         $("#imagesList").empty();
         $("#buttonList").empty();
         $("#buttonListFav").empty();
@@ -160,7 +140,9 @@ $(document).ready(function () {
     });
     $("#submit").on("click", function () {
         if ($("#input").val() != "") {
-            newBTN();
+            var listCheck = $("#input").val();
+            if (resultList.includes(listCheck)===false) {
+            newBTN();}
         };
     });
 
@@ -200,14 +182,10 @@ $(document).ready(function () {
         searchGIF(id);
     });
     $("#addFav").on("click", function () {
-        console.log(currentSelect);
+        if (currentSelect != null) {
+            if (favList.includes(currentSelect)===false) {
         favList.push(currentSelect);
         localStorage.setItem("favorite", JSON.stringify(favList));
-        renderFav();
+        renderFav();}}
     });
-    // $(".button").on("click",function () {
-    //     console.log("clicked");
-    //     searchGIF();
-    // });
-
 })
