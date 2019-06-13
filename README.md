@@ -1,5 +1,5 @@
 # GifTastic
-
+## Deployed Link:https://donxiya.github.io/GifTastic/
 ### Goal:
 
 *Create a webpage to read API
