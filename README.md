@@ -7,11 +7,11 @@ In this assignment, you'll use the GIPHY API to make a dynamic web page that pop
 
 ### Goal:
 
-*Create a webpage to read API
-*Preview the animation
-*One-click download
+* Create a webpage to read API
+* Preview the animation
+* One-click download
 
 ### Additional feature
 
-*color change for on click buttons
-*prevent duplicated search item in the list and favorites
+* color change for on click buttons
+* prevent duplicated search item in the list and favorites
